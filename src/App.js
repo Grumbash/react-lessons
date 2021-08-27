@@ -1,23 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
+
+const meat = "Мясо";
+
+function Product(props) {
+  return (
+    <li>
+      <span>
+        {props.element} - {props.index}
+      </span>
+      <button onClick={props.deleteFunc(props.index)}>X</button>
+    </li>
+  );
+}
 
 function App() {
+  const [state, setState] = useState(["Хлеб", "Сыр", "Молоко", "Краб"]);
+  const handleClick = () => {
+    setState([...state, meat]);
+  };
+
+  const handleDelete = (index) => () => {
+    const filteredState = state.filter((e, i) => i !== index);
+    setState(filteredState);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ul>
+        {state.map((element, index) => (
+          <Product
+            element={element}
+            key={index}
+            index={index}
+            deleteFunc={handleDelete}
+          />
+        ))}
+      </ul>
+      {state.length < 6 ? (
+        <button onClick={handleClick}>Add some product</button>
+      ) : (
+        "Stop"
+      )}
     </div>
   );
 }
