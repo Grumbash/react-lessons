@@ -1,8 +1,6 @@
 import "./App.css";
 import React, { useState } from "react";
 
-const meat = "Мясо";
-
 function Product(props) {
   return (
     <li>
@@ -14,15 +12,23 @@ function Product(props) {
   );
 }
 
+let newProductValue = "";
+
 function App() {
   const [state, setState] = useState(["Хлеб", "Сыр", "Молоко", "Краб"]);
+  const [value, setValue] = useState("");
   const handleClick = () => {
-    setState([...state, meat]);
+    setState([...state, newProductValue]);
+    setValue("");
   };
 
   const handleDelete = (index) => () => {
     const filteredState = state.filter((e, i) => i !== index);
     setState(filteredState);
+  };
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
   };
 
   return (
@@ -37,8 +43,13 @@ function App() {
           />
         ))}
       </ul>
+      <input type="text" onChange={handleChange}></input>
+
       {state.length < 6 ? (
-        <button onClick={handleClick}>Add some product</button>
+        <div>
+          <input type="text" onChange={handleChange} value={value}></input>
+          <button onClick={handleClick}>Add some product</button>
+        </div>
       ) : (
         "Stop"
       )}
