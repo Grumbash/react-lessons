@@ -1,5 +1,7 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect, memo } from "react";
+
+import Test from "./Test";
 
 function Product(props) {
   return (
@@ -43,18 +45,16 @@ function App() {
           />
         ))}
       </ul>
-      <input type="text" onChange={handleChange}></input>
-
       {state.length < 6 ? (
         <div>
           <input type="text" onChange={handleChange} value={value}></input>
           <button onClick={handleClick}>Add some product</button>
         </div>
       ) : (
-        "Stop"
+        <Test hello={"hello"}></Test>
       )}
     </div>
   );
 }
 
-export default App;
+export default memo(App);
