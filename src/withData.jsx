@@ -5,7 +5,6 @@ const withData = (WrappedComponent) => {
 
   const hocComponent = ({ ...props }) => (
     <>
-      {console.log({ ...props })}
       <WrappedComponent {...props} dataInit={dataInit} />
     </>
   );

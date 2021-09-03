@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import withData from "./withData";
 
 const Inputs = (props) => {
-  console.log(props);
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -10,6 +9,17 @@ const Inputs = (props) => {
     text: "",
     allo: "",
   });
+
+  useEffect(() => {
+    fetch("https://reqres.in/api/users/")
+      .then(async (res) => {
+        const json = await res.json();
+        console.log(json);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   const [data, setData] = useState(props.dataInit);
 
