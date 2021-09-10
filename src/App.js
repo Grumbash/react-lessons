@@ -14,13 +14,13 @@ function Product(props) {
   );
 }
 
-let newProductValue = "";
-
 function App() {
   const [state, setState] = useState(["Хлеб", "Сыр", "Молоко", "Краб"]);
   const [value, setValue] = useState("");
   const handleClick = () => {
-    setState([...state, newProductValue]);
+    const newArr = [...state];
+    newArr.push(value);
+    setState(newArr);
     setValue("");
   };
 
