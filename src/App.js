@@ -1,60 +1,67 @@
-import "./App.css";
-import React, { useState, useEffect, memo } from "react";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  useParams,
+} from "react-router-dom";
 
-import Test from "./Test";
-
-function Product(props) {
+export default function App() {
   return (
-    <li>
-      <span>
-        {props.element} - {props.index}
-      </span>
-      <button onClick={props.deleteFunc(props.index)}>X</button>
-    </li>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/users">Users</Link>
+            </li>
+            <li>
+              <Link to="/users/1">User 1</Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/users/:uuid">
+            <User />
+          </Route>
+          <Route path="/users">
+            <Users />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
-function App() {
-  const [state, setState] = useState(["Хлеб", "Сыр", "Молоко", "Краб"]);
-  const [value, setValue] = useState("");
-  const handleClick = () => {
-    const newArr = [...state];
-    newArr.push(value);
-    setState(newArr);
-    setValue("");
-  };
-
-  const handleDelete = (index) => () => {
-    const filteredState = state.filter((e, i) => i !== index);
-    setState(filteredState);
-  };
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
-
-  return (
-    <div>
-      <ul>
-        {state.map((element, index) => (
-          <Product
-            element={element}
-            key={index}
-            index={index}
-            deleteFunc={handleDelete}
-          />
-        ))}
-      </ul>
-      {state.length < 6 ? (
-        <div>
-          <input type="text" onChange={handleChange} value={value}></input>
-          <button onClick={handleClick}>Add some product</button>
-        </div>
-      ) : (
-        <Test hello={"hello"}></Test>
-      )}
-    </div>
-  );
+function Home() {
+  return <h2 style={{ color: "red" }}>Home</h2>;
 }
 
-export default memo(App);
+function About() {
+  return <h2 style={{ color: "blue" }}>About</h2>;
+}
+
+function Users() {
+  return <h2>Users</h2>;
+}
+
+function User() {
+  const { uuid } = useParams();
+  return <h1>User {uuid}</h1>;
+}
