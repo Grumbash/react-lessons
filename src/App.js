@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -50,7 +50,20 @@ export default function App() {
 }
 
 function Home() {
-  return <h2 style={{ color: "red" }}>Home</h2>;
+  const myRef = useRef();
+
+  const handleClick = () => {
+    console.log(myRef);
+    myRef.current.value = "LOL";
+  };
+
+  return (
+    <div style={{ padding: "5px" }}>
+      <h2 style={{ color: "red" }}>Home</h2>
+      <input ref={myRef} style={{ display: "block" }} />
+      <button onClick={handleClick}>add focus</button>
+    </div>
+  );
 }
 
 function About() {
