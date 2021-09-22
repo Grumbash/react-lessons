@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext, createContext, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -7,53 +7,77 @@ import {
   useParams,
 } from "react-router-dom";
 
-export default function App() {
-  return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-            <li>
-              <Link to="/users/1">User 1</Link>
-            </li>
-          </ul>
-        </nav>
+const Context = createContext("101");
 
-        {/* A <Switch> looks through its children <Route>s and
+export default function App() {
+  const [isDark, toggleIsDark] = useState(false);
+  const ctx = {
+    toggleTheme: () => {
+      toggleIsDark(!isDark);
+    },
+    theme: isDark ? "dark" : "light",
+  };
+  return (
+    <Context.Provider value={ctx}>
+      <Router>
+        <Body></Body>
+      </Router>
+    </Context.Provider>
+  );
+}
+
+function Body() {
+  return (
+    <div>
+      <Nav />
+      {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users/:uuid">
-            <User />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+      <Switch>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/users/:uuid">
+          <User />
+        </Route>
+        <Route path="/users">
+          <Users />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </div>
+  );
+}
+
+function Nav() {
+  const context = useContext(Context);
+  return (
+    <nav>
+      <ul>
+        <li>
+          <Link to="/">Home, {context.theme}</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/users">Users</Link>
+        </li>
+        <li>
+          <Link to="/users/1">User 1</Link>
+        </li>
+      </ul>
+    </nav>
   );
 }
 
 function Home() {
   const myRef = useRef();
+  const context = useContext(Context);
 
   const handleClick = () => {
-    console.log(myRef);
+    context.toggleTheme();
     myRef.current.value = "LOL";
   };
 
