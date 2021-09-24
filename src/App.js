@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
+
+import store from "./redux/store";
 import { Context } from "./context";
 import Body from "./components/Body";
 
@@ -14,7 +17,9 @@ export default function App() {
   return (
     <Context.Provider value={ctx}>
       <Router>
-        <Body></Body>
+        <Provider store={store}>
+          <Body></Body>
+        </Provider>
       </Router>
     </Context.Provider>
   );
