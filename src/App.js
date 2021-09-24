@@ -5,6 +5,7 @@ import {
   Link,
   Switch,
   useParams,
+  useLocation,
 } from "react-router-dom";
 
 const Context = createContext("101");
@@ -65,7 +66,7 @@ function Nav() {
           <Link to="/users">Users</Link>
         </li>
         <li>
-          <Link to="/users/1">User 1</Link>
+          <Link to="/users/1?q=hello">User 1</Link>
         </li>
       </ul>
     </nav>
@@ -100,5 +101,19 @@ function Users() {
 
 function User() {
   const { uuid } = useParams();
-  return <h1>User {uuid}</h1>;
+  const location = useLocation();
+  const withOutQuerySign = location.search
+    .split("?")
+    .join(" ")
+    .trim()
+    .split("&")
+    .map((elem) => {
+      const [key, value] = elem.split("=");
+      return {
+        [key]: value,
+      };
+    });
+  console.log(withOutQuerySign);
+  console.log(location);
+  return <h1>User location</h1>;
 }
