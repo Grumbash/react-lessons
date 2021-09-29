@@ -1,0 +1,14 @@
+.user__container {
+  padding: 16px;
+}
+
+.user__avatar {
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.user__color_error {
+  color: red;
+}
