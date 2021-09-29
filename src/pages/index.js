@@ -45,7 +45,7 @@ function Home() {
       </div>
       <button onClick={handleClick}>add focus</button>
       <p>
-        <span>Count {count}</span>
+        <span>User id: {count}</span>
         <button onClick={handleIncrementClick}>+1</button>
         <button onClick={handleDecrementClick}>-1</button>
       </p>

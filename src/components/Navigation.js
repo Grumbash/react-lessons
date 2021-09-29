@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../context";
+import { useSelector } from "react-redux";
 
 function Nav() {
   const context = useContext(Context);
+  const { count } = useSelector((state) => state.counterField);
   return (
     <nav>
       <ul>
@@ -17,7 +19,7 @@ function Nav() {
           <Link to="/users">Users</Link>
         </li>
         <li>
-          <Link to="/users/1">User 1</Link>
+          <Link to={`/users/${count}`}>User {count}</Link>
         </li>
       </ul>
     </nav>
