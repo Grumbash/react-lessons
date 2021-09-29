@@ -1,3 +1,2 @@
 export const INCREMENT = "INCREMENT";
 export const DECREMENT = "DECREMENT";
-export const SET_VALUE_TO_REDUX_STATE = "SET_VALUE_TO_REDUX_STATE";
