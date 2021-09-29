@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Context } from "../context";
 import { decrement, increment } from "../redux/actions";
 
@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 function Home() {
   const count = useSelector((state) => state.count);
+  const [value, setValue] = useState("");
   const dispatch = useDispatch();
   const myRef = useRef();
   const context = useContext(Context);
@@ -25,10 +26,21 @@ function Home() {
     dispatch(actionDecrement);
   };
 
+  const addValue = () => {
+    alert(value);
+  };
+
+  const handleValueChange = (e) => {
+    setValue(e.target.value);
+  };
+
   return (
     <div style={{ padding: "5px" }}>
       <h2 style={{ color: "red" }}>Home</h2>
-      <input ref={myRef} style={{ display: "block" }} />
+      <div>
+        <input value={value} ref={myRef} onChange={handleValueChange} />
+        <button onClick={addValue}>Add value to redux</button>
+      </div>
       <button onClick={handleClick}>add focus</button>
       <p>
         <span>Count {count}</span>
