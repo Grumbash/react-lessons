@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState } from "react";
 import { Context } from "../context";
-import { decrement, increment } from "../redux/actions";
+import { decrement, increment, setValueToReduxState } from "../redux/actions";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -27,7 +27,9 @@ function Home() {
   };
 
   const addValue = () => {
-    alert(value);
+    const action = setValueToReduxState(value);
+    setValue("");
+    dispatch(action);
   };
 
   const handleValueChange = (e) => {
