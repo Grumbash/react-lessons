@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function User() {
-  const value = useSelector((state) => state.value);
+  const value = useSelector((state) => state.valueField.value);
   const { uuid } = useParams();
 
   return (

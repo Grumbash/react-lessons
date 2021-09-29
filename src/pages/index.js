@@ -5,7 +5,7 @@ import { decrement, increment, setValueToReduxState } from "../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 
 function Home() {
-  const count = useSelector((state) => state.count);
+  const count = useSelector((state) => state.counterField.count);
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
   const myRef = useRef();
