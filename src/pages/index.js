@@ -1,6 +1,7 @@
 import React, { useContext, useRef } from "react";
 import { Context } from "../context";
 import { increment } from "../redux/actions";
+
 import { useSelector, useDispatch } from "react-redux";
 
 function Home() {

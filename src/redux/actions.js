@@ -1,6 +1,8 @@
+import { INCREMENT } from "./type";
+
 export const increment = (arg) => {
   return {
-    type: "INCREMENT",
+    type: INCREMENT,
     payload: arg + 1,
   };
 };
