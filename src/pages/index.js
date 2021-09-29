@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from "react";
 import { Context } from "../context";
-import { increment } from "../redux/actions";
+import { decrement, increment } from "../redux/actions";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -21,7 +21,8 @@ function Home() {
   };
 
   const handleDecrementClick = () => {
-    dispatch({ type: "DECREMENT" });
+    const actionDecrement = decrement(count);
+    dispatch(actionDecrement);
   };
 
   return (

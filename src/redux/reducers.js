@@ -1,4 +1,4 @@
-import { INCREMENT } from "./type";
+import { INCREMENT, DECREMENT } from "./type";
 
 const initialState = {
   count: 0,
@@ -10,7 +10,7 @@ const countReducer = (state = initialState, action) => {
   switch (action.type) {
     case INCREMENT:
       return { ...state, count: action.payload };
-    case "DECREMENT":
+    case DECREMENT:
       return { count: state.count - 1 };
     default:
       return state;
