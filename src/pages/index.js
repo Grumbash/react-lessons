@@ -16,12 +16,12 @@ function Home() {
   };
 
   const handleIncrementClick = () => {
-    const actionIncrement = increment(count);
+    const actionIncrement = increment();
     dispatch(actionIncrement);
   };
 
   const handleDecrementClick = () => {
-    const actionDecrement = decrement(count);
+    const actionDecrement = decrement();
     dispatch(actionDecrement);
   };
 
