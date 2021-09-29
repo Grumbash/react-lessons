@@ -1,11 +1,16 @@
 import { useParams } from "react-router-dom";
-import store from "../redux/store";
+import { useSelector } from "react-redux";
 
 function User() {
-  store.getState();
+  const value = useSelector((state) => state.value);
   const { uuid } = useParams();
 
-  return <h1>User {uuid}</h1>;
+  return (
+    <>
+      <h1>User {uuid}</h1>
+      <p>{value}</p>
+    </>
+  );
 }
 
 export default User;
