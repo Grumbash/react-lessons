@@ -5,19 +5,12 @@ import axios from "axios";
 import "./styles.css";
 import SingleUser from "../../components/User";
 import { getDogById } from "../../api/dog";
-import {
-  setUser as setUserToRedux,
-  setDog as setDogToRedux,
-} from "../../redux/actions";
+import { getUser, setDog as setDogToRedux } from "../../redux/actions";
 
 function User() {
   const value = useSelector((state) => state.valueField.value);
   const { user, dog } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
-  const setUser = (user) => {
-    dispatch(setUserToRedux(user));
-  };
 
   const setDog = (dog) => {
     dispatch(setDogToRedux(dog));
@@ -25,9 +18,9 @@ function User() {
 
   const { uuid } = useParams();
   useEffect(() => {
-    axios.get(`https://reqres.in/api/users/${uuid}`).then((res) => {
-      setUser(res.data.data);
-    });
+    if (uuid) {
+      dispatch(getUser(uuid));
+    }
   }, [uuid]);
 
   useEffect(() => {

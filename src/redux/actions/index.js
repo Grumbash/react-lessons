@@ -4,6 +4,6 @@ import * as user from "./user";
 
 const { increment, decrement } = count;
 const { setValueToReduxState } = value;
-const { setUser, setDog } = user;
+const { setUser, setDog, getUser } = user;
 
-export { increment, decrement, setValueToReduxState, setUser, setDog };
+export { increment, decrement, setValueToReduxState, setUser, setDog, getUser };
