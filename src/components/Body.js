@@ -15,6 +15,9 @@ function Body() {
         <Route path="/about">
           <About />
         </Route>
+        <Route path="/users/dog">
+          <p>DOG</p>
+        </Route>
         <Route path="/users/:uuid">
           <User />
         </Route>

@@ -21,6 +21,9 @@ function Nav() {
         <li>
           <Link to={`/users/${count}`}>User {count}</Link>
         </li>
+        <li>
+          <Link to={`/users/dog`}>Dog</Link>
+        </li>
       </ul>
     </nav>
   );
