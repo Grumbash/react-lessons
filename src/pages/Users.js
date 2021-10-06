@@ -28,8 +28,6 @@ function Users() {
     getUsers();
   }, []);
 
-  console.log(users, isLoading);
-
   return (
     <Container>
       <Typography variant="h2">List of users</Typography>
