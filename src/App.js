@@ -8,12 +8,14 @@ import Body from "./components/Body";
 
 export default function App() {
   const [isDark, toggleIsDark] = useState(false);
+
   const ctx = {
     toggleTheme: () => {
       toggleIsDark(!isDark);
     },
     theme: isDark ? "dark" : "light",
   };
+
   return (
     <Context.Provider value={ctx}>
       <Router>

@@ -1,19 +1,21 @@
 import React, { useContext, useRef, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+// import Button from "@mui/material/Button";
+// import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+
 import { Context } from "../context";
 import { decrement, increment, setValueToReduxState } from "../redux/actions";
-
-import { useSelector, useDispatch } from "react-redux";
 
 function Home() {
   const count = useSelector((state) => state.counterField.count);
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
-  const myRef = useRef();
   const context = useContext(Context);
 
   const handleClick = () => {
     context.toggleTheme();
-    myRef.current.value = "LOL";
   };
 
   const handleIncrementClick = () => {
@@ -40,14 +42,27 @@ function Home() {
     <div style={{ padding: "5px" }}>
       <h2 style={{ color: "red" }}>Home</h2>
       <div>
-        <input value={value} ref={myRef} onChange={handleValueChange} />
-        <button onClick={addValue}>Add value to redux</button>
+        <TextField
+          value={value}
+          onChange={handleValueChange}
+          variant="standard"
+          label="Some value"
+        />
+        <Button variant="outlined" onClick={addValue}>
+          Add value to redux
+        </Button>
       </div>
-      <button onClick={handleClick}>add focus</button>
+      <Button variant="outlined" onClick={handleClick}>
+        Change theme
+      </Button>
       <p>
         <span>User id: {count}</span>
-        <button onClick={handleIncrementClick}>+1</button>
-        <button onClick={handleDecrementClick}>-1</button>
+        <Button variant="outlined" onClick={handleIncrementClick}>
+          +1
+        </Button>
+        <Button variant="outlined" onClick={handleDecrementClick}>
+          -1
+        </Button>
       </p>
     </div>
   );
