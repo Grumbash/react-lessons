@@ -7,6 +7,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import User from "../components/User";
 import { Alert } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -40,7 +41,9 @@ function Users() {
       ) : (
         <Stack direction="row" spacing={2}>
           {users.map((user) => (
-            <User user={user} key={user.id}></User>
+            <Link to={`/users/${user.id}`} key={user.id}>
+              <User user={user}></User>
+            </Link>
           ))}
         </Stack>
       )}

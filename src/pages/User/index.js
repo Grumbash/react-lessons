@@ -5,6 +5,7 @@ import "./styles.css";
 import SingleUser from "../../components/User";
 import { getDogById } from "../../api/dog";
 import { getUser, setDog as setDogToRedux } from "../../redux/actions";
+import { Box } from "@mui/system";
 
 function User() {
   const value = useSelector((state) => state.valueField.value);
@@ -32,11 +33,15 @@ function User() {
 
   if (user) {
     return (
-      <>
+      <Box
+        sx={{
+          width: 300,
+          height: 300,
+          margin: "16px auto",
+        }}
+      >
         <SingleUser user={user}></SingleUser>
-        <p>{value}</p>
-        <p>dog name is : {dog?.name}</p>
-      </>
+      </Box>
     );
   } else {
     return <h1 className="user__color_error"> There is no user! </h1>;
