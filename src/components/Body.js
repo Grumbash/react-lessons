@@ -1,45 +1,31 @@
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Nav from "./Navigation";
 import About from "../pages/About";
 import User from "../pages/User";
 import Users from "../pages/Users";
 import Home from "../pages";
+import Login from "../pages/Login";
 
 function Body() {
+  const loggedIn = useSelector((state) => state.user.loggedIn);
   return (
     <Switch>
-      <Route path="/users/:uuid">
+      <Route exact path="/users/:uuid">
         <User />
       </Route>
-      <Route path="/">
+      <Route path="/users" exact>
         <Users />
+      </Route>
+      <Route path="/login" exact>
+        <Login />
+      </Route>
+
+      <Route path="/" exact>
+        {loggedIn ? <Redirect to="/users" /> : <Redirect to="/login" />}
       </Route>
     </Switch>
   );
-  // return (
-  //   <div>
-  //     <Nav />
-  //     {/* A <Switch> looks through its children <Route>s and
-  //           renders the first one that matches the current URL. */}
-  //     <Switch>
-  //       <Route path="/about">
-  //         <About />
-  //       </Route>
-  //       <Route path="/users/dog">
-  //         <p>DOG</p>
-  //       </Route>
-  //       <Route path="/users/:uuid">
-  //         <User />
-  //       </Route>
-  //       <Route path="/users">
-  //         <Users />
-  //       </Route>
-  //       <Route path="/">
-  //         <Home />
-  //       </Route>
-  //     </Switch>
-  //   </div>
-  // );
 }
 
 export default Body;

@@ -3,6 +3,7 @@ import { SET_USER, SET_DOG } from "../types";
 const initialState = {
   user: null,
   dog: null,
+  loggedIn: false,
 };
 
 const userReducer = (state = initialState, { type, payload }) => {
