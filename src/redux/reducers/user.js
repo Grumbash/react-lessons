@@ -1,4 +1,4 @@
-import { SET_USER, SET_DOG, SET_GOOGLE_USER } from "../types";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: null,
@@ -6,20 +6,26 @@ const initialState = {
   googleUser: null,
 };
 
-const userReducer = (state = initialState, { type, payload }) => {
-  switch (type) {
-    case SET_USER:
-      return { ...state, user: payload };
+export const counterSlice = createSlice({
+  name: "user",
+  initialState,
+  reducers: {
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
+    setDog: (state, action) => {
+      state.dog = action.payload;
+    },
+    setGoogleUser: (state, action) => {
+      state.googleUser = action.payload;
+    },
+  },
+});
+const {
+  actions: { setUser, setDog, setGoogleUser },
+  reducer,
+} = counterSlice;
 
-    case SET_DOG:
-      return { ...state, dog: payload };
+export { setUser, setDog, setGoogleUser };
 
-    case SET_GOOGLE_USER:
-      return { ...state, googleUser: payload };
-
-    default:
-      return state;
-  }
-};
-
-export default userReducer;
+export default reducer;

@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import "./styles.css";
 import SingleUser from "../../components/User";
 import { getDogById } from "../../api/dog";
-import { getUser, setDog as setDogToRedux } from "../../redux/actions";
+import { getUser } from "../../api/user";
+import { setDog as setDogToRedux } from "../../redux/reducers/user";
 import { Box } from "@mui/system";
 
 function User() {
-  const value = useSelector((state) => state.valueField.value);
   const { user, dog } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -19,7 +19,7 @@ function User() {
   const { uuid } = useParams();
   useEffect(() => {
     if (uuid) {
-      dispatch(getUser(uuid));
+      getUser(uuid, dispatch);
     }
   }, [uuid]);
 

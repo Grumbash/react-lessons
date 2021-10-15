@@ -1,16 +1,7 @@
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
-import reducer from "./reducers";
+import { configureStore } from "@reduxjs/toolkit";
+import counter from "./reducers/counter";
+import user from "./reducers/user";
 
-const middleware = [thunk];
-
-const store = createStore(
-  reducer,
-  composeWithDevTools(
-    applyMiddleware(...middleware)
-    // other store enhancers if any
-  )
-);
-
-export default store;
+export default configureStore({
+  reducer: { counterField: counter, user },
+});

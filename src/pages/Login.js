@@ -5,12 +5,12 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { GoogleLogin } from "react-google-login";
 import { useDispatch } from "react-redux";
-import { SET_GOOGLE_USER } from "../redux/types/user";
+import { setGoogleUser } from "../redux/reducers/user";
 
 export default function Login() {
   const dispatch = useDispatch();
   const onSuccess = (response) => {
-    dispatch({ type: SET_GOOGLE_USER, payload: response.profileObj });
+    dispatch(setGoogleUser(response.profileObj));
     // console.log(response);
   };
 

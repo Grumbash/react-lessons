@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
 import { Context } from "../context";
-import { decrement, increment, setValueToReduxState } from "../redux/actions";
+import { increment, decrement } from "../redux/reducers/counter";
 
 function Home() {
   const count = useSelector((state) => state.counterField.count);
@@ -29,9 +29,9 @@ function Home() {
   };
 
   const addValue = () => {
-    const action = setValueToReduxState(value);
+    // const action = setValueToReduxState(value);
     setValue("");
-    dispatch(action);
+    // dispatch(action);
   };
 
   const handleValueChange = (e) => {

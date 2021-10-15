@@ -1,18 +1,29 @@
-import * as types from "../types";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   count: 0,
 };
 
-const countReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case types.INCREMENT:
-      return { ...state, count: state.count + 1 };
-    case types.DECREMENT:
-      return { ...state, count: state.count - 1 };
-    default:
-      return state;
-  }
-};
+export const counterSlice = createSlice({
+  name: "counter",
+  initialState,
+  reducers: {
+    increment: (state) => {
+      state.count = state.count + 1; // -> {type: "counter/increment", payload: {{{{}}}} }
+    },
+    decrement: (state) => {
+      state.count = state.count - 1;
+    },
+    incrementByAmount: (state, action) => {
+      state.count += action.payload;
+    },
+  },
+});
+const {
+  actions: { increment, decrement, incrementByAmount },
+  reducer,
+} = counterSlice;
 
-export default countReducer;
+export { increment, decrement, incrementByAmount };
+
+export default reducer;
