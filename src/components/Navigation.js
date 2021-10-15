@@ -1,16 +1,30 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { Context } from "../context";
 import { useSelector } from "react-redux";
+import { useTheme } from "@mui/material/styles";
+import Avatar from "@mui/material/Avatar";
 
 function Nav() {
-  const context = useContext(Context);
+  const googleUser = useSelector((state) => state.user.googleUser);
+  const theme = useTheme();
   const { count } = useSelector((state) => state.counterField);
   return (
-    <nav>
-      <ul>
+    <nav
+      style={{
+        boxShadow: theme.shadows[4],
+      }}
+    >
+      <ul
+        style={{
+          margin: `0px 0px ${theme.spacing(1)}`,
+          padding: `${theme.spacing(1.5)}`,
+          listStyle: "none",
+          display: "flex",
+          justifyContent: "space-around",
+        }}
+      >
         <li>
-          <Link to="/">Home, {context.theme}</Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
           <Link to="/about">About</Link>
@@ -23,6 +37,9 @@ function Nav() {
         </li>
         <li>
           <Link to={`/users/dog`}>Dog</Link>
+        </li>
+        <li>
+          <Avatar alt="User Avatar" src={googleUser?.imageUrl} />
         </li>
       </ul>
     </nav>
