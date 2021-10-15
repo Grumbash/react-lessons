@@ -4,10 +4,18 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { GoogleLogin } from "react-google-login";
+import { useDispatch } from "react-redux";
+import { SET_GOOGLE_USER } from "../redux/types/user";
 
 export default function Login() {
-  const responseGoogle = (response) => {
-    console.log(response);
+  const dispatch = useDispatch();
+  const onSuccess = (response) => {
+    dispatch({ type: SET_GOOGLE_USER, payload: response.profileObj });
+    // console.log(response);
+  };
+
+  const onFailure = (res) => {
+    console.error(res);
   };
 
   return (
@@ -34,8 +42,8 @@ export default function Login() {
         <GoogleLogin
           clientId="355208557192-oatim905em0spm4lb7tu265suopd0jid.apps.googleusercontent.com"
           buttonText="Login"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
+          onSuccess={onSuccess}
+          onFailure={onFailure}
           cookiePolicy={"single_host_origin"}
         ></GoogleLogin>
       </Paper>

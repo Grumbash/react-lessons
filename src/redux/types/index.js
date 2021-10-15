@@ -4,4 +4,4 @@ import * as user from "./user";
 
 export const { INCREMENT, DECREMENT } = count;
 export const { SET_VALUE_TO_REDUX_STATE } = value;
-export const { SET_USER, SET_DOG, GET_USER } = user;
+export const { SET_USER, SET_DOG, GET_USER, SET_GOOGLE_USER } = user;
